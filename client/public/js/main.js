@@ -34,7 +34,7 @@ function getLanguage(string) {
       text: string
     }
   }).done(function(data) {
-    console.log(data);
+    return data;
   });
 }
 
