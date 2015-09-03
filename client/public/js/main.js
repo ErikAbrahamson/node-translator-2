@@ -35,7 +35,9 @@ function getLanguage(string) {
     }
   }).done(function(data) {
     return data;
-  });
+  }).fail(function(error) {
+    return error.status;
+  };
 }
 
 function getToken() {
