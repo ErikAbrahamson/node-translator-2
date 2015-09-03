@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var ajax = require('najax');
+var random = require('random-words');
 
 var request = {
   url: 'https://datamarket.accesscontrol.windows.net/v2/OAuth2-13',
@@ -31,6 +32,13 @@ ajax(request);
 router.get('/', function(req, res) {
   res.render('index', {
     title: 'Node Translator'
+  });
+});
+
+router.get('/api/random', function(req, res) {
+  var words = random(20);
+  res.json({
+    random: words
   });
 });
 

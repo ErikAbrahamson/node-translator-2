@@ -1,9 +1,22 @@
 var token;
+var random;
 var tempArray = [];
 $(window).on('load',function() {
   console.log('loaded');
   getToken();
+  randomWord();
 });
+
+function randomWord() {
+  $.ajax({
+    url: '/api/random',
+    method: 'GET',
+  }).done(function(data) {
+    random = data.random;
+  }).fail(function(error) {
+    console.log(error.status);
+  });
+}
 
 function translate(word, langTo) {
   $.ajax({
@@ -37,7 +50,7 @@ function getLanguage(string) {
     return data;
   }).fail(function(error) {
     return error.status;
-  };
+  });
 }
 
 function getToken() {
