@@ -1,33 +1,10 @@
+var token;
+
 $(window).on('load',function() {
   console.log('loaded');
-  $.ajax({
-    url: '/api/token',
-    method: 'GET',
-    success: function(data) {
-      token = data.token;
-    },
-    error: function(error) {
-      return error.status;
-    }
-  });
+  getToken();
 });
-function checkLanguages() {
-  $.ajax({
-    url: 'http://api.microsofttranslator.com/V2/Ajax.svc/GetLanguagesForTranslate',
-    dataType: 'jsonp',
-    jsonp: 'oncomplete',
-    data: {
-      appId: 'Bearer ' + token,
-      contentType: 'text/plain',
-    },
-    success: function(data) {
-      console.log(data);
-    },
-    error: function(error) {
-      console.log(error.status);
-    }
-  });
-}
+
 function translate(word, langFrom, langTo) {
   $.ajax({
     url: 'http://api.microsofttranslator.com/V2/Ajax.svc/Translate',
@@ -40,11 +17,24 @@ function translate(word, langFrom, langTo) {
       text: word
     },
     jsonp: 'oncomplete',
+  }).done(function(data){
+    console.log(data);
+  }).fail(function(error) {
+    getToken();
+    // translate(word, langFrom, langTo);
+  });
+}
+
+function getToken() {
+  $.ajax({
+    url: '/api/token',
+    method: 'GET',
     success: function(data) {
-      console.log(data);
+      token = data.token;
+      console.log(token);
     },
     error: function(error) {
-      console.log(error.status);
+      return error.status;
     }
   });
 }
