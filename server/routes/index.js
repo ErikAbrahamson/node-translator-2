@@ -14,8 +14,11 @@ var request = {
   },
   success: function(data) {
     data = JSON.parse(data);
-    router.get('/', function(req, res) {
-      res.json(data);
+    var token = data.access_token;
+    router.get('/api/token', function(req, res, next) {
+      res.json({
+        token: token
+      });
     });
   },
   error: function(error) {
@@ -25,5 +28,11 @@ var request = {
 };
 
 ajax(request);
+
+router.get('/', function(req, res) {
+  res.render('index', {
+    title: 'Node Translator'
+  });
+});
 
 module.exports = router;

@@ -1,15 +1,14 @@
-// add scripts
-
-$(document).on('ready', function() {
-  console.log('sanity check!');
+$(document).ready(function() {
+  console.log('loaded');
+  $.ajax({
+    url: '/api/token',
+    method: 'GET',
+    success: function(data) {
+      console.log(data);
+      console.log(token);
+    },
+    error: function(error) {
+      return error.status;
+    }
+  });
 });
-
-// $.ajax({
-//   url: 'http://api.microsofttranslator.com',
-//   method: 'POST',
-//   data: {
-//     client_id: 'galvanize',
-//     client_secret: 'h1zPercBbGNVC7dVdG7LojEq0w0N2uPdYc0+JTDYYWQ=',
-//     grant_type: 'client_credentials'
-//     }
-// })
