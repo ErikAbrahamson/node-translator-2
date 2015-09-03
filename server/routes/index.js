@@ -2,15 +2,13 @@ var express = require('express');
 var router = express.Router();
 var ajax = require('najax');
 var http = require('http');
-require('dotenv').load();
-
-router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Node Translator' });
-});
 
 var request = {
-  url: 'https://login.microsoftonline.com/common/oauth2/authorize',
+  url: 'https://datamarket.accesscontrol.windows.net/v2/OAuth2-13',
   type: 'POST',
+  header: {
+    'Content-Type': 'application/x-www-form-urlencoded',
+  },
   data: {
     grant_type: 'client_credentials',
     client_id: 'galvanize',
@@ -19,7 +17,9 @@ var request = {
   },
   success: function(data) {
     console.log(data);
-    // grabs access_token
+    router.get('/', function(req, res, next) {
+      res.render(data);
+    });
   },
   error: function(error) {
     console.log('Error: ' + error.status);
