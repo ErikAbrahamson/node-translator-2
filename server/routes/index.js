@@ -23,7 +23,6 @@ var request = {
   },
   error: function(error) {
     console.log('Error: ' + error.status);
-    console.log(request);
   }
 };
 
