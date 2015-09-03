@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var ajax = require('najax');
 var http = require('http');
+require('dotenv').load();
 
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Node Translator' });
@@ -13,7 +14,7 @@ var request = {
   data: {
     grant_type: 'client_credentials',
     client_id: 'galvanize',
-    client_secret: 'h1zPercBbGNVC7dVdG7LojEq0w0N2uPdYc0+JTDYYWQ=',
+    client_secret: process.env.client_secret,
     scope: 'http://api.microsofttranslator.com'
   },
   success: function(data) {
