@@ -5,13 +5,29 @@ $(window).on('load',function() {
     method: 'GET',
     success: function(data) {
       token = data.token;
-      console.log(token);
     },
     error: function(error) {
       return error.status;
     }
   });
 });
+function checkLanguages() {
+  $.ajax({
+    url: 'http://api.microsofttranslator.com/V2/Ajax.svc/GetLanguagesForTranslate',
+    dataType: 'jsonp',
+    jsonp: 'oncomplete',
+    data: {
+      appId: 'Bearer ' + token,
+      contentType: 'text/plain',
+    },
+    success: function(data) {
+      console.log(data);
+    },
+    error: function(error) {
+      console.log(error.status);
+    }
+  });
+}
 function translate(word, langFrom, langTo) {
   $.ajax({
     url: 'http://api.microsofttranslator.com/V2/Ajax.svc/Translate',

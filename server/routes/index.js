@@ -7,7 +7,7 @@ var request = {
   method: 'POST',
   contentType: 'application/x-www-form-urlencoded',
   data: {
-    client_id: 'galvanize',
+    client_id: 'g11',
     client_secret: process.env.client_secret,
     grant_type: 'client_credentials',
     scope: 'http://api.microsofttranslator.com/'
