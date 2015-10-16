@@ -28,6 +28,7 @@ var request = {
     scope: 'http://api.microsofttranslator.com/'
   },
   success: function(data) {
+    console.log(process.env.client_id);
     data = JSON.parse(data);
     var token = data.access_token;
     router.get('/api/token', function(req, res, next) {
