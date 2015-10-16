@@ -8,8 +8,6 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var swig = require('swig');
-require('dotenv').load();
-
 
 // *** routes *** //
 var routes = require('./routes/index.js');
