@@ -13,4 +13,4 @@ var Record = new Schema(
 
 mongoose.model('records', Record);
 
-mongoose.connect('mongodb://localhost/nodetranslator');
+mongoose.connect(process.env.MONGOLAB_URI);
